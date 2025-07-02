@@ -49,7 +49,7 @@ project/
 bash
 Copy
 Edit
-git clone https://github.com/yourusername/safari-travels.git
+git clone (https://edelbert08.github.io/safaritravel/index.html)
 2️⃣ Navigate to the Project Folder
 
 bash
