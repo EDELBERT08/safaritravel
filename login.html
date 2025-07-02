@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- For icons -->
+</head>
+<body>
+
+<!-- Login Section -->
+<section class="newsletter" id="login">
+  <div class="content">
+    <h3>Sign in</h3>
+    <form id="loginForm">
+      <input type="email" id="login-email" placeholder="Enter your email" class="email" required>
+      <input type="password" id="login-password" placeholder="Enter your password" class="email" required>
+      <input type="submit" value="Sign in" class="btn">
+    </form>
+    <div id="login-msg" style="margin-top: 10px;"></div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<section class="footer">
+  <div class="box-container">
+
+    <div class="box">
+      <h3>contact info</h3>
+      <a href="#"><i class="fas fa-phone"></i> +254-743-316-175</a>
+      <a href="#"><i class="fas fa-envelope"></i> edelbertkipchumba@gmail.com</a>
+      <a href="#"><i class="fas fa-map"></i> Nairobi Kenya</a>
+    </div>
+
+    <div class="box">
+      <h3>quick links</h3>
+      <a href="#"><i class="fas fa-arrow-right"></i> popular destinations</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> popular destinations</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> popular destinations</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> popular destinations</a>
+    </div>
+
+    <div class="box">
+      <h3>travel resources</h3>
+      <a href="#"><i class="fas fa-arrow-right"></i> travel guide</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> travel guide</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> travel guide</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> travel guide</a>
+    </div>
+
+    <div class="box">
+      <h3>legal information</h3>
+      <a href="#"><i class="fas fa-arrow-right"></i> terms and conditions</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> terms and conditions</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> terms and conditions</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> terms and conditions</a>
+    </div>
+
+  </div>
+
+  <div class="credit">created by <span>Edelbert</span> | all rights reserved!</div>
+</section>
+
+<!-- Login Script -->
+<script>
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  try {
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+
+    const result = await response.json();
+    const msgDiv = document.getElementById('login-msg');
+    msgDiv.textContent = result.message;
+
+    if (response.ok) {
+      msgDiv.style.color = 'green';
+      // window.location.href = '/dashboard'; // Optional redirect
+    } else {
+      msgDiv.style.color = 'red';
+    }
+  } catch (err) {
+    document.getElementById('login-msg').textContent = 'An error occurred. Please try again.';
+    document.getElementById('login-msg').style.color = 'red';
+  }
+});
+</script>
+
+</body>
+</html>
